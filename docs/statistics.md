@@ -146,6 +146,7 @@ equations for their calculation if necessary, are described below.
       WAR/162 for pitchers is p_war * (68 / (p_g + p_gs)).
 
 ## Position Abbreviations
+
 - **1B:** First baseman.
 - **2B:** Second baseman.
 - **3B:** Third baseman.
