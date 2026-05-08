@@ -223,10 +223,23 @@ each graph.
 
 ### Clustering
 
-- clustering
-  - clusters really like grouping by team as well as position
-  - [post graphs here]
-  - agglomerative generally more coherent than k-means (better avg silhouette score)
+<img alt="Cluster silhouette scores and player scatter plots." height="600" src="results/clusters/clusters.png" width="600"/>
+
+An examination of the embedding clusters reveals that, while not especially coherent, they do follow 
+notable trends in grouping players by team as well as position. Silhouette scores were low overall, with
+agglomerative clustering performing better than k-means and generally having more coherent/less noisy clusters.
+
+<img alt="Number of players per cluster by nationality." height="400" src="imgs/cluster_nationality.png" width="1800"/>
+
+[text]
+
+<img alt="Number of players per cluster by position." height="400" src="imgs/cluster_position.png" width="1600"/>
+
+[text]
+
+<img alt="Number of players per cluster by team." height="400" src="imgs/cluster_team.png" width="1600"/>
+
+[text]
 
 ### Word Similarity
 
