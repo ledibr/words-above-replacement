@@ -233,11 +233,11 @@ agglomerative clustering performing better than k-means and generally having mor
 
 [text]
 
-<img alt="Number of players per cluster by position." height="400" src="imgs/cluster_position.png" width="1600"/>
+<img alt="Number of players per cluster by position." height="400" src="imgs/cluster_position.png" width="1000"/>
 
 [text]
 
-<img alt="Number of players per cluster by team." height="400" src="imgs/cluster_team.png" width="1600"/>
+<img alt="Number of players per cluster by team." height="400" src="imgs/cluster_team.png" width="1000"/>
 
 [text]
 
