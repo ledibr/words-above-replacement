@@ -219,19 +219,25 @@ calculated. Those similarity scores were then plotted against the difference in 
 As with the other similarity graphs, the line of best fit and r<sup>2</sup> and p-value were calculated for
 each graph.
 
-
 ## Results
+
+### Clustering
+
 - clustering
   - clusters really like grouping by team as well as position
   - [post graphs here]
   - agglomerative generally more coherent than k-means (better avg silhouette score)
-- similarity
-- various things i compared
-- alllllllllll the images
+
+### Word Similarity
+
+### Player Similarity
+
+### Embedding Visualization
+
 - Visualization: Tensorboard Projector on GitHub Pages site (separate repo)
 
-
 ## Conclusion
+
 - well, conclusion
 
 The questions addressed by this project leave room for nearly infinite expansion of future work. Beyond
