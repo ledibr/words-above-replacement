@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sqlite3, bz2
 from utils import DATABASE, DATA_DIR
 

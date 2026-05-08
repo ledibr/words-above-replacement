@@ -73,7 +73,6 @@ the project's limitations in [section 7](#limitations).
 - reds scouting reports
 - prospect hunting with deep learning
 
-
 ## Data
 
 The data for this project was sourced from a SQL dump of tables from Baseball Reference (Sports Reference LLC, 2025)
@@ -333,7 +332,7 @@ WAR/162 (or other metric) differential, and examining fit -->
 
 ## Bibliography
 
-**Note:** Not all items listed below are referenced in the body of the above paper.
+**Note:** Not all items listed below are referenced in the body of the paper above.
 However, all were influential to some degree in the process of developing this 
 project, and as such have been included to provide a comprehensive and fair 
 overview of the literature I found useful.
