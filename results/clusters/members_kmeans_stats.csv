@@ -1,0 +1,142 @@
+person_id,cluster,country,position,team
+baez--000jav,1,Puerto Rico,SS,CHC
+bryant001kri,1,United States,3B,CHC
+castel002nic,1,United States,OF,DET
+harper002bry,1,United States,OF,PHI
+heywar001jas,1,United States,OF,CHC
+hoskin000rhy,1,United States,1B,PHI
+mccutc001and,1,United States,OF,PIT
+santan001car,1,Dominican Republic,1B,CLE
+schwar001kyl,1,United States,LF,CHC
+soler-000jor,1,Cuba,OF,KCR
+alcant000san,2,Dominican Republic,SP,FLA
+bassit000chr,2,United States,SP,OAK
+berrio000jos,2,Puerto Rico,SP,MIN
+boyd--000mat,2,United States,SP,DET
+burnes000cor,2,United States,SP,MIL
+degrom001jac,2,United States,SP,NYM
+eovald001nat,2,United States,SP,BOS
+fried-001max,2,United States,SP,ATL
+fulmer002mic,2,United States,RP,DET
+gausma001kev,2,United States,SP,TOR
+gibson002kyl,2,United States,SP,MIN
+glasno000tyl,2,United States,SP,TBD
+heaney001and,2,United States,SP,ANA
+hill--002ric,2,United States,SP,LAD
+kersha001cla,2,United States,SP,LAD
+matz--001ste,2,United States,SP,NYM
+morton001cha,2,United States,SP,ATL
+pivett000nic,2,Canada,SP,BOS
+scherz001max,2,United States,SP,WSN
+snell-000bla,2,United States,SP,TBD
+soroka000mic,2,Canada,SP,ATL
+stroma001mar,2,United States,SP,TOR
+taillo001jam,2,United States,SP,PIT
+verlan001jus,2,United States,SP,HOU
+walker001tai,2,United States,SP,ARI
+wheele001zac,2,United States,SP,PHI
+anders003tim,3,United States,SS,CHW
+cease-000dyl,3,United States,SP,CHW
+giolit000luc,3,United States,SP,CHW
+moncad000joh,3,Cuba,3B,CHW
+rodon-000car,3,United States,SP,CHW
+bader-000har,4,United States,CF,STL
+judge-001aar,4,United States,OF,NYY
+otani-000sho,4,Japan,DH,ANA
+sanche001gar,4,Dominican Republic,C,NYY
+severi000lui,4,Dominican Republic,SP,NYY
+soto--003jua,4,Dominican Republic,OF,WSN
+stanto003mic,4,United States,DH,NYY
+torres000gle,4,Venezuela,2B,NYY
+trout-001mik,4,United States,CF,ANA
+altuve001jos,5,Venezuela,2B,HOU
+alvare000yor,5,Cuba,DH,HOU
+bregma001ale,5,United States,3B,HOU
+tucker001kyl,5,United States,OF,HOU
+valdez005fra,5,Dominican Republic,SP,HOU
+buxton000byr,6,United States,CF,MIN
+duran-000jho,6,Dominican Republic,RP,MIN
+julien000edo,6,Canada,2B,MIN
+kepler001max,6,Germany,OF,MIN
+larnac000tre,6,United States,OF,MIN
+lewis-002roy,6,United States,3B,MIN
+polanc001jor,6,Dominican Republic,SS,MIN
+wallne000mat,6,United States,OF,MIN
+arraez000lui,7,Venezuela,2B,MIN
+bogaer001xan,7,Aruba,SS,BOS
+correa000car,7,Puerto Rico,SS,HOU
+devers000raf,7,Dominican Republic,3B,BOS
+iglesi001jos,7,Cuba,SS,DET
+machad001man,7,United States,3B,SDP
+perez-001sal,7,Venezuela,C,KCR
+semien001mar,7,United States,SS,OAK
+story-000tre,7,United States,SS,COL
+vazque001chr,7,Puerto Rico,C,BOS
+alonso000pet,8,United States,1B,NYM
+confor001mic,8,United States,OF,NYM
+diaz--004edw,8,Puerto Rico,RP,NYM
+flores003wil,8,Venezuela,3B,SFG
+lindor000fra,8,Puerto Rico,SS,CLE
+lugo--000jac,8,United States,RP,NYM
+marte-001sta,8,Dominican Republic,CF,PIT
+mccann002jam,8,United States,C,DET
+mcneil000jef,8,United States,2B,NYM
+nimmo-000bra,8,United States,OF,NYM
+pillar000kev,8,United States,OF,TOR
+rosari000ame,8,Dominican Republic,SS,NYM
+smith-000dom,8,United States,1B,NYM
+flaher000jac,9,United States,SP,STL
+wacha-001mic,9,United States,SP,STL
+busch-002mic,10,United States,1B,CHC
+castro003wil,10,Puerto Rico,OF,DET
+crow-a000pet,10,United States,CF,CHC
+happ--000ian,10,United States,OF,CHC
+hoerne000nic,10,United States,2B,CHC
+kelly-001car,10,United States,C,ARI
+morel-000chr,10,Dominican Republic,OF,CHC
+shaw--000mat,10,United States,3B,CHC
+suzuki001sei,10,Japan,OF,CHC
+swanso001dan,10,United States,SS,ATL
+darvis001yu-,11,Japan,SP,SDP
+hendri001kyl,11,United States,SP,CHC
+quinta001jos,11,Colombia,SP,CHC
+assad-000jav,12,Mexico,SP,CHC
+brown-009ben,12,United States,RP,CHC
+horton000cad,12,United States,SP,CHC
+imanag000sho,12,Japan,SP,CHC
+steele000jus,12,United States,SP,CHC
+hader-000jos,13,United States,RP,MIL
+jansen001ken,13,Curacao,RP,LAD
+kimbre001cra,13,United States,RP,BOS
+pomera001tho,13,United States,RP,BOS
+robert009dav,13,United States,RP,PHI
+rodrig006edu,13,Venezuela,SP,BOS
+sale--001chr,13,United States,SP,BOS
+bell--007jos,14,United States,1B,PIT
+frazie001ada,14,United States,2B,PIT
+keller000mit,14,United States,SP,PIT
+reynol000bry,14,United States,OF,PIT
+castil013lui,15,Dominican Republic,SP,CIN
+gray--001son,15,United States,SP,CIN
+maeda-001ken,15,Japan,SP,LAD
+manaea000sea,15,United States,SP,OAK
+miley-001wad,15,United States,SP,MIL
+paddac000chr,15,United States,SP,MIN
+albies000ozh,16,Curacao,2B,ATL
+arenad001nol,16,United States,3B,COL
+freema002fre,16,United States,1B,ATL
+goldsc001pau,16,United States,1B,STL
+riley-000aus,16,United States,3B,ATL
+bellin000cod,17,United States,OF,LAD
+benint000and,17,United States,LF,BOS
+betts-000mar,17,United States,OF,LAD
+ozuna-002mar,17,Dominican Republic,DH,ATL
+peders001joc,17,United States,OF,LAD
+pham--001tho,17,United States,OF,STL
+profar001jur,17,Curacao,LF,SDP
+suarez001eug,17,Venezuela,3B,CIN
+yelich001chr,17,United States,LF,MIL
+bichet000bo-,18,United States,SS,TOR
+grichu001ran,18,United States,OF,TOR
+hernan000teo,18,Dominican Republic,OF,TOR
+spring001geo,18,United States,OF,HOU
