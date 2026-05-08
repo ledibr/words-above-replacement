@@ -276,49 +276,63 @@ WAR/162 (or other metric) differential, and examining fit -->
 
 
 ## Limitations
-- Dataset:
-  - Limited in scope to those sites aggregated by Baseball Reference, 
-  which are mostly less popular and lower in quality than “mainstream” sources 
-  - Heavily skewed towards certain teams (and by extension players)
-  - Imperfections in spelling, player identification (by BRef), parsing, etc. 
-- Mention identification challenges:
-  - Players not being tagged correctly by BRef (both false positives and false negatives)
-  - Spelling issues 
-    - Happen all the time everywhere, even in mainstream/professional publications 
-    - Hopefully not prevalent enough to cause meaningful issues 
-  - Nicknames 
-    - Some players frequently referred to by nicknames (shortened version of name 
-      or otherwise), e.g. Belli, Vladdy, Alvy, The Rock/La Piedra, Ern Dog 
-    - Nickname not always in BRef database, can’t be automated 
-    - May overlap with “normal” words (more of a problem w/ historical players 
-      not in the player set anyways), e.g. “Lefty”, “Junior” 
-    - Would have to handle via manual curation for list matching 
-  - Shared names 
-    - General coincidences/common names 
-      - Players w/ same last name (e.g. Chapman, Marte, Rosario, Smith, Turner, Alvarez)
-      - Players w/ same full name (e.g. Max Muncy, Jose Ramirez, Luis Castillo)
-      - Players w/ same first name (e.g. Miguel, Jose, Matt, Trevor)
-      - Other special cases (e.g. Schneider)
-    - Family (usu. siblings or fathers who also played)
-      - Any “Jr.” (e.g. Guerrero, Tatis)
-      - Active siblings (e.g. Acuña, Contreras)
-      - Famous family w/o Jr. (e.g. Bichette)
-    - Other “problem names” 
-      - Some names have special characters that will likely be split in tokenization 
-        - Periods: J.T. Realmuto, J.D. Davis, any “Jr.” 
-        - Apostrophes: Tyler O’Neill, Travis d’Arnaud 
-        - Hyphens: Pete Crow-Armstrong (but I did keep him in)
-      - \> 3 tokens: e.g. Michael A. Taylor 
-      - Robbie Ray :/ (see: Rays)
-- Occasional challenges from lowercasing:
-  - Word “era” vs. stat “ERA” (see also: WHIP, but ERA def a bigger problem)
-- Didn't do smth like comparing player similarity against a similarity value b/c
-  it feels nearly impossible to say which players are the most similar to each other
-  in many cases. Bill James similarity score metric exists, but quality is 
-  questionable + would take work to implement
-- Hard to figure out ideal settings for PCA/t-SNE vis, clustering
-- Time lol
-  - legit just couldn't do as much analysis as i wanted of results because i did not have the time!
+
+The ambitious and unprecedented scope of this work, as well as the nature of the data,
+resulted in a number of limitations for different aspects of the project. The dataset
+was limited to sites aggregated by Baseball Reference, which are mostly (though not all)
+less popular and lower in quality than "mainstream" sources. As discussed in [section 2](#data),
+the corpus balance is skewed towards certain teams and by extension certain players.
+The prevalence of sites focused on one specific team likely contributes to the strong similarity
+between embeddings of teammates, which might be lessened using data from more "general"/mainstream
+sources. The BRef database has a notable number of false positives and negatives when it comes
+to linking players and articles, increasing the difficulty of getting accurate article counts for
+players. Difficulties in parsing likely had some effect on the quality of the final corpus, though
+mainly in the form of reducing the number of articles included.
+
+Mention identification faced a significant number of challenges. Among the complicating factors:
+- Spelling issues: Misspellings obviously occur everywhere, not just in informal writing/amateur 
+  journalism, but have the potential to cause issues in entity identification.
+- Nicknames:
+  - Some players are frequently referred to by nicknames (as shortened versions of their names
+  or otherwise), e.g. "Belli" (Cody Bellinger), "Vladdy" (Vladimir Guerrero Jr.), "Alvy" (Francisco
+  Alvarez), "La Piedra"/"The Rock" (Luis Castillo). These mentions are not caught by simple name-matching regex.
+  - While some of these nicknames are stored in BRef databases, not all are, so they cannot be
+     automatically identified; these would have to be manually curated for list matching.
+  - Some names may overlap with "normal" words, e.g. "Lefty" or "Junior", though this is more of an
+    issue with historical players not present in the player set.
+- Shared names:
+  - Some players (including some who overlap in active years) share the same first, last, or even 
+    full name because of particularly common names or just sheer coincidence.
+    - First name examples: Miguel, Jose, Matt, Trevor
+    - Last name examples: Chapman, Marte, Rosario, Smith, Turner, Alvarez
+    - Full name examples: Max Muncy, Jose Ramirez, Luis Castillo
+    - Other special cases: e.g. Davis Schneider (TOR) and John Schneider (TOR manager)
+  - Some players have notable family members frequently mentioned in conjunction with them,
+    typically siblings or parents who played in MLB.
+    - "Jr."s (e.g. Vladimir Guerrero Jr., Fernando Tatis Jr.)
+    - Famous family w/ no Jr. (e.g. Bo Bichette)
+    - Active siblings (e.g. Ronald Acuña Jr./Luisangel Acuña, William Contreras/Willson Contreras)
+- Other kinds of "problem names":
+  - Names with special characters likely to be split in tokenization:
+    - Periods: e.g. J.T. Realmuto, J.D. Davis, any "Jr."
+    - Apostrophes: e.g. Tyler O'Neill, Travis d'Arnaud
+    - Hyphens: Pete Crow-Armstrong (though he is included in the main player set)
+  - Names with more than 2 tokens (e.g. Michael A. Taylor)
+  - Robbie Ray specifically ("Ray" overlaps with team mention replacement for TBR)
+
+Beyond processing, data analysis had additional challenges. Occasional complications were introduced
+by lowercasing in the preprocessing; namely, the erasure of the distinction between the word "era"
+and the metric ERA, which both appear in relation to extremely good pitchers. Identifying ideal
+parameters for clustering and PCA/t-SNE visualization was difficult, especially due to the fact that
+there were no gold labels for clusters. One discarded possibility for embedding evaluation was
+comparing cosine similarity against some kind of external similarity value; it simply feels too
+difficult to judge which players are the most similar to each other without some sort of objective
+calculation, and the ones that exist (such as Bill James' similarity score) are of dubious quality.
+
+As with most work, the biggest limitations came from time and energy. The amount of analysis I was
+able to perform on the results was especially constrained by the demands of other academic work and 
+general life circumstances. However, I will have ample time to develop this project beyond the
+context of completing my capstone, which I look forward to doing in the coming months.
 
 ## Acknowledgments
 - marc ofc
