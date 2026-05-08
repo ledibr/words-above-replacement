@@ -2,7 +2,8 @@
 **Date:** May 8, 2026
 **Author:** Lindsay Dial (ledibr)  
 **Affiliation:** Michtom School of Computer Science, Brandeis University  
-_Capstone project submitted in partial fulfillment of the requirements for the degree of Master of Science in Computational Linguistics._
+_Capstone project submitted in partial fulfillment of the requirements for the degree of Master of Science 
+in Computational Linguistics._
 
 ## Introduction
 From the dawn of professional baseball, the way a player appears in the papers 
@@ -43,35 +44,11 @@ them to different baseball statistics. Finally, I conduct a basic exploration of
 potential of such embeddings by evaluating correlations between player similarity scores and
 WAR values.
 
-My discussion begins with a brief overview of prior work in this area in [section 1](#related-work).
-I then describe my data in [section 2](#data) and the embedding construction process in 
-[section 3](#embeddings). I outline my experimental setup in [section 4](#experiments),
-followed by an analysis of my results in [section 5](#results). I review my conclusions, 
-contributions, and plans for future work, in [section 6](#conclusion), as well as addressing
-the project's limitations in [section 7](#limitations).
-
-## Related Work
-- focus on yamada et al., rob arthur, anything tagged as especially
-    useful in the zotero
-
-### Entity Embeddings
-- primarily wikipedia2vec, can mention other research
-
-### Bias in Sports
-- issues of note: stacking, prospect promotion, media bias
-
-### Baseball NLP
-- While NLP techniques have been used to evaluate bias in other sports media, 
-  and baseball journalism has been examined through a non-computational lens, 
-  little work has been performed on baseball media at significant scale. 
-  Rob Arthur and Ben Lindbergh’s 2019 research on Cincinnati Reds scouting reports 
-  from 1991–2003 looked at word choice in addition to numerical grades and 
-  utilized sentiment analysis techniques, but did not involve full-text NLP.
-- Existing work on baseball NLP has focused mainly on prospect promotion,
-  hasn't been very advanced in terms of actual prediction systems or anything
-- trouble with the curve
-- reds scouting reports
-- prospect hunting with deep learning
+My discussion begins with a description of my data in [section 1](#data) and the embedding construction process in 
+[section 2](#embeddings). I outline my experimental setup in [section 3](#experiments),
+followed by an analysis of my results in [section 4](#results). I review my conclusions, 
+contributions, and plans for future work, in [section 5](#conclusion), as well as addressing
+the project's limitations in [section 6](#limitations).
 
 ## Data
 
@@ -139,62 +116,58 @@ A full list of the sites in the corpus, their number of articles, and their team
 the [Article Statistics doc](docs/articles.md).
 
 ## Embeddings
-- methodology for text replacement
-  - replacing player mentions w/ unique token allows unification of all mentions
-    in one form as well as comparison to other single-token words/mapping into
-    same space
-  - To identify sets of players for experiments: re-filter the players to those 
-    with a minimum number of articles based on the IDs of the parsed articles, 
-    storing new counts in the updated_player_data SQL table. 
-  - Some players are excluded from experiments due to “problem names”, 
-    e.g. names with internal punctuation, more than two tokens, or identical full names. 
-  - Team info masked to limit their influence on player embeddings 
-    for the purposes of clustering. Location, noun (singular and plural, plus 
-    alternate forms as necessary), abbreviation, and leagues are all masked with 
-    placeholders (e.g. ##TEAM) before player mentions are replaced. 
-  - Preparing player mentions: for each player mentioned in a given article—
-    identified before beginning the process due to article-player mapping in the 
-    new_articles_players SQL table—replace each mention of them (by full name or 
-    only last name; in select cases, nicknames may be included in the list) in 
-    the article text with their unique person ID from the database. 
-  - Like removing the extraneous “problem strings”, mention replacement can be 
-    performed with relatively simple regex. 
-  - To account for missing player tags, all players in the set of interest 
-    are searched for by full name in the article and added to the list of 
-    mentioned players if found before proceeding as usual. 
-  - Articles with no mentions are left in the corpus to provide additional data 
-    for non-mention word embeddings.
 
-- grid search process (incl. smaller player set used for testing)
-  - mention papers relevant to selecting hyperparams
-  - Second experiment/grid search: smaller, manually-selected set of 24 players, 
-      all heavily represented in the data, distributed across a select set of teams 
-      to get approximately equal representation of factors like team, position, etc. 
-    - Still avoiding punctuated problem names, but not worrying much about duplicate names 
-    - Picked from approx. 1 team per division, so primarily getting groups of ~4 
-      players per team/division + per position (pitcher, shortstop, outfielder, 
-      other non-catcher position player) as well as a mix of race/nationality/years/etc.
-  - Third experiment: further grid search, same player set 
-- training process (incl. params)
-  - Embeddings are implemented by using the Python gensim library to train a 
-      Word2Vec skip-gram model on the textual data. 
-  - Training is single-threaded for reproducibility (along with the use of a 
-    set random seed). 
-  - Hyperparameters for primary experiments: 
-    - 300d
-    - initial learning rate = 0.025
-    - window = 10
-    - negative sample value = 5
-    - downsampling threshold: 1e-5
-    - 3 epochs 
-    - min. count = 10
-  - Loss tracked during the training process as a measure of convergence 
-    for epoch values
+### Setup
+
+Development of entity embeddings relied on a process of replacing player mentions with a unique token allowing
+all mentions to be unified. Condensing mentions into one token also enables the mapping of entities into the same
+vector space as non-entity words. The mention replacement process was performed with relatively simple regex, first
+targeting a given player's full name before searching for their last name alone. This helped to correctly identify
+articles in which players were mentioned instead of relying on the provided article-player mappings, which were
+not entirely accurate. Mention counts were tracked for each player by using `re.subn` to replace mentions. Articles
+with no player mentions were left in the corpus to provide additional training data for non-entity word embeddings.
+
+To identify the set of players for the main experiment, as well as the smaller set of players used for grid
+search and functionality testing, players were filtered based on a minimum article count threshold. For the main
+experiment, this was set at 1,000 articles, counted based on the article-player mapping data. Some players were
+excluded from experiments due to "problem names", e.g. names with internal punctuation or names shared with other
+players (see [section 6](#limitations) for in-depth examples). Before performing player mention replacement, 
+team information was masked to limit the influence of team mentions on the player embeddings. Location, noun
+(singular and plural, plus alternate forms as necessary), abbreviation, and league names were masked with
+placeholders (e.g. ##TEAM).
+
+### Grid Search
+
+The grid search process involved tuning the number of vector dimensions, initial learning rate,
+context window size, negative sampling value, downsampling frequency value, and number of training
+epochs. Two rounds of grid search were performed, both using the same set of players for evaluation.
+This set of 24 players was manually selected from players heavily represented in the data, distributed across
+a select set of teams (one per division) as well as across positions (pitcher, shortstop, outfielder,
+other non-catcher position player). Loss was tracked during the training process as a measure of convergence
+for epoch values, though it was ultimately not especially useful.
+
+Hyperparameters tested across both rounds of grid search:
+
+|   Parameter  |         Values         |
+|:------------:|:----------------------:|
+|     Dim.     |      100, 200, 300     |
+|     Alpha    | 0.001, 0.1, 0.025, 0.5 |
+|    Window    |          5, 10         |
+|  Neg. Sample |          5, 10         |
+|    Epochs    |     1, 3, 5, 7, 10     |
+| Downsampling |      1e-05, 3e-05      |
+
+### Training
+
+Embeddings were implemented by using the Python `gensim` library to train a Word2Vec skip-gram model
+on the text corpus. Training was single-threaded for reproducibility purposes, along with the use of a
+set random seed. After performing grid search, the final hyperparameters selected for the primary experiments
+were: 300 dimensions; initial learning rate of 0.025; context window size of 10; negative sampling value of 5;
+downsampling frequency value of 1e-5; minimum word count of 10; and 3 epochs of training. These parameters
+were selected to balance training time and coherence of player similarity values.
 
 ## Experiments
 - describe specific experimental setup for main stuff here
-  - First experiment: manually-selected set of 115 players with at least 700 articles, 
-    distributed across MLB teams (may not even need to mention)
   - Fourth experiment: same 24-player set with chosen hyperparameters, but without 
     Metsmerized data 
   - Fifth experiment: set of 141 players with at least 1000 articles 
@@ -234,11 +207,9 @@ the [Article Statistics doc](docs/articles.md).
     - For each word, plotted similarity between all players (split into position 
       players vs starting pitchers, relievers excluded) and word vs. each relevant 
       statistic (e.g. ‘slugger’ vs. SLG, ISO, HR%) using matplotlib 
-    - r^2 and p-value reported for line of best fit using scipy
-
-<!-- TO DO: Examine WAR correlations by selecting a set of player pairs/one player 
-and a set of comparison players, plotting entity embedding similarity/distance vs. 
-WAR/162 (or other metric) differential, and examining fit -->
+    - r^2 and p-value reported for line of best fit using scipy 
+    - Examined WAR correlations by selecting a set of player pairs/one player and a set of comparison players, 
+      plotting entity embedding similarity/distance vs. WAR/162 differential, and examining fit
 
 - also include charts of e.g. player composition
 
@@ -345,10 +316,10 @@ simply being there for me 24/7.
 
 ## Bibliography
 
-**Note:** Not all items listed below are referenced in the body of the paper above.
-However, all were influential to some degree in the process of developing this 
-project, and as such have been included to provide a comprehensive and fair 
-overview of the literature I found useful.
+**Note:** The most vital sources in the development of this project were Yamada et al. (2020),
+Arthur (2020a, 2020b, 2026), and Lindbergh and Arthur (2019). However, all the sources listed below were influential 
+to varying degrees, and as such have been included to provide a comprehensive and fair overview of 
+the literature I found useful.
 
 <div class="csl-bib-body" style="line-height: 1.35; ">
   <div class="csl-entry" style="margin-bottom: 1em;">Abdulkareem Alsudais and Hovig Tchalian. 2019. <a href="https://doi.org/10.48550/arXiv.1807.10800">Clustering prominent named entities in topic-specific text corpora</a>. <i>Preprint</i>, arXiv:1807.10800v2.</div>
