@@ -57,8 +57,8 @@
 | metsmerizedonline<sup>2</sup>  |     22,063    |   NYM   |
 
 Footnotes:
-- 1: Also under previous site name 'tomahawktake'.
-- 2: Source excluded from main experiments for data balance.
+1. Also under previous site name 'tomahawktake'.
+2. Source excluded from main experiments for data balance.
 
 Chart of corpus representation by team, including all sites in the table above:
 

@@ -250,6 +250,7 @@ WAR/162 (or other metric) differential, and examining fit -->
 ## Conclusion
 - well, conclusion
 - future work (probably will be most of it)
+  - besides doing more of the analysis i wanted to do here but didn't have time for...
   - Expanding dataset:
     - Getting articles from FanGraphs (dump from Dan Szymborski), MLB, etc.
       - MLB attaches articles to player IDs - “news” in URL (vs. “video”, etc.)
@@ -310,6 +311,8 @@ WAR/162 (or other metric) differential, and examining fit -->
   in many cases. Bill James similarity score metric exists, but quality is 
   questionable + would take work to implement
 - Hard to figure out ideal settings for PCA/t-SNE vis, clustering
+- Time lol
+  - legit just couldn't do as much analysis as i wanted of results because i did not have the time!
 
 ## Acknowledgments
 - marc ofc

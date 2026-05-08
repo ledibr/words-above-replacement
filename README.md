@@ -2,6 +2,7 @@
 
 - basic intro/project description
 - basic navigation/top-level file description
+- COMPUTER SPECS
 
 The project's paper, which describes the project's background, methodology, and results,
 is contained in the [words-above-replacement-paper.md](words-above-replacement-paper.md) file.

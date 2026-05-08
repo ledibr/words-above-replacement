@@ -379,8 +379,14 @@ def update_player_article_counts(conn: sqlite3.Connection, cursor: sqlite3.Curso
         WHERE article_id IN (SELECT article_id FROM request_data)""")
     print("View parsed_article_player_view updated.")
 
+    cursor.execute("""DROP VIEW IF EXISTS subset_article_player_view""")
+    cursor.execute("""CREATE VIEW IF NOT EXISTS subset_article_player_view AS SELECT * FROM new_articles_players
+        WHERE article_id IN (SELECT article_id FROM data_subset
+    )""")
+    print("View subset_article_player_view updated.")
+
     cursor.execute("""SELECT person_id, COUNT(person_id)
-                      FROM parsed_article_player_view 
+                      FROM subset_article_player_view 
                       WHERE person_id IN (SELECT person_id FROM updated_player_data)
                       GROUP BY person_id""")
     players = cursor.fetchall()[1:]
@@ -402,7 +408,7 @@ def update_player_article_counts(conn: sqlite3.Connection, cursor: sqlite3.Curso
     cursor.execute("""CREATE VIEW IF NOT EXISTS updated_player_view AS
     SELECT *
     FROM updated_player_data
-    WHERE parsed_article_count >= 700""")
+    WHERE parsed_article_count >= 1000""")
     print("View updated_player_view updated.")
 
 
