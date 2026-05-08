@@ -13,11 +13,11 @@ from datetime import datetime
 from html import unescape
 
 from text_processing import normalize_article_text
+from utils import DATABASE, ARTICLE_STORAGE, PARSED_TEXT_STORAGE
 
-
-DATABASE = 'data/database.db'
-ARTICLE_STORAGE = 'data/articles'
-TEXT_STORAGE = 'data/texts'
+# DATABASE = 'data/database.db'
+# ARTICLE_STORAGE = 'data/articles'
+# TEXT_STORAGE = 'data/texts'
 
 
 def build_id_dict(cursor: sqlite3.Cursor) -> None:
@@ -333,7 +333,7 @@ def parse_html(conn: sqlite3.Connection, cursor: sqlite3.Cursor, target_url: str
         # text = soup.text
         text = normalize_article_text(text)
         # print(text)
-        out_path = f"{TEXT_STORAGE}/{art_id}_final.txt"
+        out_path = f"{PARSED_TEXT_STORAGE}/{art_id}_final.txt"
         with open(out_path, 'w', encoding='utf-8') as f:
             f.write(text)
         timestamp = datetime.now().strftime('%m-%d-%Y %X')
@@ -356,7 +356,7 @@ def remove_small_texts(conn: sqlite3.Connection, cursor: sqlite3.Cursor):
     articles = cursor.fetchall()
     for item in articles:
         art_id = item[0]
-        file_path = f'{TEXT_STORAGE}/{art_id}_final.txt'
+        file_path = f'{PARSED_TEXT_STORAGE}/{art_id}_final.txt'
         if os.path.exists(file_path):
             filesize = os.path.getsize(file_path)
             if filesize < 400:
@@ -385,23 +385,23 @@ def update_player_article_counts(conn: sqlite3.Connection, cursor: sqlite3.Curso
     )""")
     print("View subset_article_player_view updated.")
 
-    cursor.execute("""SELECT person_id, COUNT(person_id)
-                      FROM subset_article_player_view 
-                      WHERE person_id IN (SELECT person_id FROM updated_player_data)
-                      GROUP BY person_id""")
-    players = cursor.fetchall()[1:]
-    for p in players:
-        person_id = p[0]
-        article_count = p[1]
-        cursor.execute("""SELECT *
-                          FROM updated_player_data
-                          WHERE person_id LIKE ?""", (person_id,))
-        entry = cursor.fetchone()
-        cursor.execute("""INSERT INTO updated_player_data
-                          VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-                       (person_id, entry[1], entry[2], entry[3], article_count, entry[5], entry[6], 0))
-        conn.commit()
-    print("Player article counts updated.")
+    # cursor.execute("""SELECT person_id, COUNT(person_id)
+    #                   FROM subset_article_player_view
+    #                   WHERE person_id IN (SELECT person_id FROM updated_player_data)
+    #                   GROUP BY person_id""")
+    # players = cursor.fetchall()[1:]
+    # for p in players:
+    #     person_id = p[0]
+    #     article_count = p[1]
+    #     cursor.execute("""SELECT *
+    #                       FROM updated_player_data
+    #                       WHERE person_id LIKE ?""", (person_id,))
+    #     entry = cursor.fetchone()
+    #     cursor.execute("""INSERT INTO updated_player_data
+    #                       VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+    #                    (person_id, entry[1], entry[2], entry[3], article_count, entry[5], entry[6], 0))
+    #     conn.commit()
+    # print("Player article counts updated.")
 
     # create updated_player_view for updated_player_data w/ min article count
     cursor.execute("""DROP VIEW IF EXISTS updated_player_view""")
@@ -416,10 +416,7 @@ if __name__ == '__main__':
     conn = sqlite3.connect(DATABASE)
     cursor = conn.cursor()
 
-    # cursor.execute("""ALTER TABLE updated_player_data ADD COLUMN mention_count INTEGER""")
-    # cursor.execute("""CREATE TABLE IF NOT EXISTS copy_new_articles_players AS SELECT * FROM new_articles_players""")
-
-    update_player_article_counts(conn, cursor)
+    # update_player_article_counts(conn, cursor)
 
     # remove_small_texts(conn, cursor)
 
