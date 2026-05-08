@@ -335,14 +335,13 @@ general life circumstances. However, I will have ample time to develop this proj
 context of completing my capstone, which I look forward to doing in the coming months.
 
 ## Acknowledgments
-- marc ofc
-- my dad especially for connecting me w/ resources
-- but also the rest of my family (mom, jojo, deena, etc)
-- sean forman
-- rob arthur
-- dan szymborski
-- daniel
-- the rest of my friends (ren, lola, joanna, shel, klo, etc)
+
+This work was made possible first and foremost thanks to my advisor, Dr. Marcus Verhagen, whose guidance was
+invaluable in completing the project. Data for the project was provided by Sean Forman from Sports Reference LLC,
+who also gave me excellent advice, alongside Dan Szymborski from FanGraphs and Rob Arthur from Baseball Prospectus. 
+Immense thanks go out to my family and friends for all of their support, whether in the form of suffering through
+the creation of various bar charts together, getting me food while I was hunkered down doing nothing but work, or
+simply being there for me 24/7.
 
 ## Bibliography
 
