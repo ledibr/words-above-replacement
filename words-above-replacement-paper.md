@@ -233,25 +233,34 @@ each graph.
 
 ## Conclusion
 - well, conclusion
-- future work (probably will be most of it)
-  - besides doing more of the analysis i wanted to do here but didn't have time for...
-  - Expanding dataset:
-    - Getting articles from FanGraphs (dump from Dan Szymborski), MLB, etc.
-      - MLB attaches articles to player IDs - “news” in URL (vs. “video”, etc.)
-    - Incorporating prospect scouting reports (TWTC has a corpus, though its formatting has errors)
-    - Creating a "test set" using annotated documents to try predicting entity mentions using the embeddings
-  - Improving entities/getting higher quality embeddings that capture more info:
-    - NER to identify player names, since the regex is imperfect
-    - Coreference resolution (to help get pronouns, maybe nicknames?)
-    - Entity disambiguation (will help with siblings, parents, ppl who randomly have same name)
-    - Knowledge graph linking (as in Wikipedia2Vec)
-  - Predictive analysis:
-    - Examining trends over time related to WAR/other stats (i.e. embeddings from one time period compared to stats
-      of next year)
-    - Combining embeddings w/ existing player projection system (e.g. ZiPS, since there's a good chance I will be
-      able to get access to this and work w/ Dan Szymborski) to see if it can improve predictions
-      - explain ZiPS
 
+The questions addressed by this project leave room for nearly infinite expansion of future work. Beyond
+performing further analysis on my existing results, the three most prominent areas I intend to explore going forward 
+are dataset expansion, embedding quality, and analysis of predictive power. 
+
+To expand the dataset, I aim to include a significant volume of articles from more mainstream sources, including
+articles from FanGraphs and MLB. Adding prospect scouting reports is also a possibility, thanks to the
+existence of the corpus published by Danovitch (2019). Given enough time to perform annotation, the model 
+might benefit from the creation of a test set by annotating documents to evaluate embedding quality by 
+predicting entity mentions.
+
+Several steps could be taken to improve entity embeddings. Incorporating an NER system to identify player mentions
+would likely be an improvement over the existing regex-based system. In tandem with a coreference resolution model
+to identify pronominal mentions (and possibly also nicknames), this could massively increase the volume and diversity 
+of mentions used in creating embeddings. An entity disambiguation system could help resolve the issues of shared
+names (discussed further in [section 6](#limitations) below). Finally, adapting the embedding model to something
+closer to Wikipedia2Vec (Yamada et al., 2020) by incorporating a knowledge graph-like linking system would improve
+embedding complexity by directly associating player embeddings in shared contexts.
+
+The primary goal of my work moving forward is to evaluate whether player embeddings trained on this kind of
+textual data can improve existing statistical projection systems. Such systems are widely used by mainstream
+outlets like FanGraphs and Baseball Prospectus as well as teams and analysts in the industry; however, they are
+still unreliable in many ways, especially when it comes to projecting future major league performance of prospects.
+With only the embeddings, I could examine trends over time related to WAR or other metrics by comparing embeddings
+from one period of time to statistics from a future period. With access to a projection system like [ZiPS](https://www.mlb.com/glossary/projection-systems/szymborski-projection-system),
+I could compare the system's "baseline" performance to its performance with the addition of embedding data.
+If successful, such work has the potential to meaningfully impact the landscape of sabermetrics and even the 
+operations of MLB teams.
 
 ## Limitations
 
