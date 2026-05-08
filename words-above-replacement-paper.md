@@ -167,51 +167,58 @@ downsampling frequency value of 1e-5; minimum word count of 10; and 3 epochs of 
 were selected to balance training time and coherence of player similarity values.
 
 ## Experiments
-- describe specific experimental setup for main stuff here
-  - Fourth experiment: same 24-player set with chosen hyperparameters, but without 
-    Metsmerized data 
-  - Fifth experiment: set of 141 players with at least 1000 articles 
-    (excluding Metsmerized), only curated to remove “problem names”
 
-- e.g. embedding info, corpus subset, things tested/plotted, etc.
-  - Using the embeddings for analysis includes computing similarity metrics 
-    between players, as well as between players and non-player words; 
-    clustering player vectors; and examining correlations between player vectors 
-    and statistical metrics like WAR.
-  - Similarity metrics are primarily calculated using cosine similarity. 
-  - Comparing players to all words was generally uninformative, so a narrowed set 
-    of interest words was selected by examining high-frequency vocabulary in the 
-    full corpus, as well as words identified as prominently associated with 
-    different classes of players (e.g. race, position) in the literature. 
-  - Words classified into eight general categories: positive, negative, stats, 
-    gameplay, physical, status, contract, nationality 
-  - Similarity calculations for each player (always top 10 most similar):
-    - Other players 
-    - All words from interest set 
-    - All words for each category in: positive, negative, stats, gameplay, physical 
-  - Clustering:
-    - Purpose: exploring "natural" groupings of players in the data
-    - K-means and agglomerative clustering (average linkage w/ cosine distance)
-      performed using sklearn 
-    - Number of clusters tuned on k-means (value used for both), linkage/distance 
-      metrics tuned for agglomerative; all tuning evaluated using silhouette score 
-      (scored w/ cosine distance for # clusters, model’s distance metric for 
-      linkage/distance metrics)
-    - Cluster silhouette scores and scatter plot of players for each method 
-      created with matplotlib 
-    - Player embeddings reduced to 2 dimensions for plotting with IncrementalPCA 
-      from sklearn 
-  - Stat analysis:
-    - Selected common words from player-word similarities and identified 
-      player stats that might be associated with them 
-    - For each word, plotted similarity between all players (split into position 
-      players vs starting pitchers, relievers excluded) and word vs. each relevant 
-      statistic (e.g. ‘slugger’ vs. SLG, ISO, HR%) using matplotlib 
-    - r^2 and p-value reported for line of best fit using scipy 
-    - Examined WAR correlations by selecting a set of player pairs/one player and a set of comparison players, 
-      plotting entity embedding similarity/distance vs. WAR/162 differential, and examining fit
+Following grid search, one additional experiment was performed on the 24-player set with the chosen
+final hyperparameters wherein the outlier site mentioned in [section 1](#data) was excluded from the corpus
+to evaluate its impact on the resulting embeddings. As its exclusion resulted in more balanced player representation
+in the main player set and reduced the strength of team effects on the embeddings, it was kept out of the corpus
+for the main experiment. 141 players were used for the main experiment, drawn from the set of players 
+with over 1,000 parsed articles in the corpus, which was only curated to remove 21 players with "problem names". 
+Figures displaying the representation of different groups of players in the set are presented below.
+Using the embeddings for analysis included clustering player vectors; computing similarity metrics between
+players, as well as between players and non-player words; and examining correlations between vector relationships
+and player statistical metrics like WAR.
 
-- also include charts of e.g. player composition
+<img alt="Players studied by nationality." height="400" src="imgs/player_nationality.png" width="700"/>
+
+<img alt="Players studied by position." height="400" src="imgs/player_position.png" width="700"/>
+
+<img alt="Players studied by team." height="400" src="imgs/player_team.png" width="700"/>
+
+Player vectors were clustered to explore "natural" groupings of players in the data. Both K-means and agglomerative
+clustering were implemented with `sklearn`. The number of clusters for both methods was tuned on the K-means
+clusters, and linkage and distance metrics were tuned for agglomerative clustering. All tuning was evaluated using
+silhouette score, evaluated with cosine distance for number of clusters and by the model's distance metric for
+linkage and distance metrics. To visualize the clusters, silhouette scores for each cluster and scatter plots of
+player vectors for each method were created using `matplotlib`. Player embeddings were reduced to 2 dimensions
+for plotting using `IncrementalPCA` from `sklearn`. After tuning, 18 clusters was selected as the ideal number
+based on average silhouette score and individual cluster coherence; likewise, average linkage with cosine distance
+was selected as the ideal configuration for agglomerative clustering.
+
+To examine granular similarity scores, similarity between embeddings was also computed using cosine similarity.
+Comparing players to all words in the model vocabulary was generally uninformative, so a narrowed set of interest
+words was selected by examining high-frequency vocabulary in the full corpus as well as words identified as
+prominently associated with different groups of players (e.g. by race or position) in the literature. The words
+were classified into eight general categories: "positive", "negative", "stats", "gameplay", "physical", "status",
+"contract", and "nationality". For each player, the top 10 most similar items and their scores were recorded from
+each of the following comparison sets: all other players in the target player set; all words from the interest set;
+and all words from each of the "positive", "negative", "stats", "gameplay", and "physical" categories.
+
+To analyze potential correlations between similarity scores and real statistical metrics, common words from the
+lists of player-word similarities were selected and player statistics that might be associated with those words
+identified. For each word, similarity was calculated for all players in the relevant division of the player set
+(non-pitchers versus pitchers, excluding relief pitchers) and plotted against each relevant statistic using
+`matplotlib`. For each graph, a line of best fit was calculated and r<sup>2</sup> and p-value were reported
+using `scipy` to help estimate the correlation strength.
+
+Finally, correlations between player similarity and value were examined for each distinct position represented
+in the player set, as well as aggregated outfielders (all LF/CF/RF/OF designations) and aggregated pitchers
+(all SP and RP). For each position group, the player with the highest WAR/162 value was chosen as the 
+comparison point, and similarity scores between that player and all other players in the position group were
+calculated. Those similarity scores were then plotted against the difference in WAR/162 between each player pair.
+As with the other similarity graphs, the line of best fit and r<sup>2</sup> and p-value were calculated for
+each graph.
+
 
 ## Results
 - clustering
