@@ -1,4 +1,4 @@
-import os, json, random, logging, sys, glob
+import os, json, random, logging, sys, glob, bz2
 
 from gensim.models.keyedvectors import load_word2vec_format
 from tqdm import tqdm
@@ -8,6 +8,7 @@ import gensim.scripts.word2vec2tensor
 import pandas as pd
 import numpy as np
 from collections import Counter
+from pathlib import Path
 from utils import DATA_DIR, DATABASE, ARTICLE_STORAGE, PARSED_TEXT_STORAGE, CLEAN_TEXT_STORAGE, TKN_TEXT_STORAGE, MASK_TEXT_STORAGE, MENT_TEXT_STORAGE, RANDOM_SEED, ch_dir
 
 
@@ -42,9 +43,14 @@ class DataCorpus:
                 f.write('\n'.join(docs))
 
     def __iter__(self):
-        with open(self.loc, 'r', encoding='utf-8') as f:
-            for line in f:
-                yield line.strip().split()
+        if Path(self.loc).suffix == '.bz2':
+            with bz2.open(self.loc, 'rt', encoding='utf-8') as f:
+                for line in f:
+                    yield line.strip().split()
+        else:
+            with open(self.loc, 'r', encoding='utf-8') as f:
+                for line in f:
+                    yield line.strip().split()
 
 
 def train_word2vec(corpus):
@@ -240,13 +246,17 @@ if __name__ == '__main__':
     exp_num = '005'
     exp_path = f'data/exp_{exp_num}'
 
-    with ch_dir(exp_path):
-        with open(f'player_list.txt', 'r', encoding='utf-8') as f:
-            player_ids = [line.strip() for line in f]
-        # mention_corpus = DataCorpus(f'{MENT_TEXT_STORAGE}/special', f'mention_corpus.cor', player_ids)
+    # with open('data/mention_corpus.cor', 'rb') as f:
+    #     with bz2.open('data/mention_corpus.cor.bz2', 'wb') as bz:
+    #         bz.write(f.read())
+
+    # with ch_dir(exp_path):
+    #     with open(f'player_list.txt', 'r', encoding='utf-8') as f:
+    #         player_ids = [line.strip() for line in f]
+    #     mention_corpus = DataCorpus(f'{MENT_TEXT_STORAGE}/special', f'mention_corpus.cor', player_ids)
         # model = train_word2vec(mention_corpus)
-        for model_path in glob.glob('*.model'):
-            model = Word2Vec.load(model_path)
+        # for model_path in glob.glob('*.model'):
+        #     model = Word2Vec.load(model_path)
             # get_similar_words(model.wv, player_ids)
             # get_similar_players(model.wv, player_ids)
 

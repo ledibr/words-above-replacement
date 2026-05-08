@@ -1,6 +1,5 @@
 import os, random, glob, json
 import pandas as pd
-
 from gensim.models.word2vec import KeyedVectors
 from gensim.scripts.word2vec2tensor import word2vec2tensor
 from embeddings import DataCorpus, train_word2vec
@@ -45,7 +44,7 @@ if __name__ == '__main__':
     with open(f'{DATA_DIR}/player_list.txt', 'r', encoding='utf-8') as f:
         player_ids = [line.strip() for line in f]
     # NOTE: the dirname here won't be used, so it doesn't matter
-    mention_corpus = DataCorpus('DEMO', f'{DATA_DIR}/mention_corpus.cor', player_ids)
+    mention_corpus = DataCorpus('DEMO', f'{DATA_DIR}/mention_corpus.cor.bz2', player_ids)
     with ch_dir('demo_files'):
         model = train_word2vec(mention_corpus)
         embeds = model.wv
