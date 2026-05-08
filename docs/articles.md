@@ -1,7 +1,10 @@
 # Article Statistics
 
-<!-- TODO: describe corpus, provide tables of stats on present (+ removed?) articles by site -->
-
+The following table contains a breakdown of the corpus compiled in `mention_corpus.cor`, listing
+each site identifier (generally the base of the site's URLs) with the number of articles from
+that site in the corpus and what team(s), if any, the site's coverage is centered around.
+A value of "None" indicates that the site covers all MLB teams rather than focusing on a
+particular one (or two).
 
 |           Site Name            | Article Count |   Team  |
 |:------------------------------:|:-------------:|:-------:|

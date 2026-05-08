@@ -159,3 +159,35 @@ equations for their calculation if necessary, are described below.
 - **DH:** Designated hitter.
 - **SP:** Starting pitcher.
 - **RP:** Relief pitcher.
+
+## Team Abbreviations
+- NYM: New York Mets
+- PHI: Philadelphia Phillies
+- ATL: Atlanta Braves
+- MIA: Miami Marlins
+- WSN: Washington Nationals
+- CHC: Chicago Cubs
+- MIL: Milwaukee Brewers
+- STL: St. Louis Cardinals
+- PIT: Pittsburgh Pirates
+- CIN: Cincinnati Reds
+- LAD: Los Angeles Dodgers
+- SDP: San Diego Padres
+- SFG: San Francisco Giants
+- COL: Colorado Rockies
+- ARI: Arizona Diamondbacks
+- NYY: New York Yankees
+- TOR: Toronto Blue Jays
+- BAL: Baltimore Orioles
+- TBR: Tampa Bay Rays
+- BOS: Boston Red Sox
+- KCR: Kansas City Royals
+- DET: Detroit Tigers
+- CHW: Chicago White Sox
+- CLE: Cleveland Guardians (formerly Cleveland Indians)
+- MIN: Minnesota Twins
+- SEA: Seattle Mariners
+- HOU: Houston Astros
+- TEX: Texas Rangers
+- ATH/OAK: Athletics (formerly Oakland Athletics)
+- LAA: Los Angeles Angels

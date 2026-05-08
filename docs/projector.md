@@ -1,15 +1,15 @@
-<!-- TODO: describe vectors, metadata, options in projector UI -->
+# Using the WAR Visualizer
 
 The information below can also be found in the `README.md` file of the [projector repository](https://github.com/ledibr/words-above-replacement-visualizer).
 
-## Tensors
+### Tensors
 
 - **WAR Word2Vec 10K:** Embeddings of 10k most frequent words in the model vocabulary.
 - **WAR Word2Vec 12K:** Embeddings of 12k most frequent words in the model vocabulary.
 - **WAR Word2Vec Players + Target Words:** Embeddings of studied player set (141 players)
   as well as all "interest words" (256 words).
 
-## Metadata
+### Metadata
 
 Each embedding is associated with several metadata fields that can be used as labels
 or color categories in the projector.

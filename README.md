@@ -16,15 +16,15 @@ All code was run in PyCharm on a Framework Laptop 13 with the following specific
 The project's paper, which describes the project's background, methodology, and results,
 is contained in the [words-above-replacement-paper.md](words-above-replacement-paper.md) file.
 
+All files generated during training and analysis of the main experiment are located in 
+the [`results` directory](results).
+
 An interactive visualization of the embeddings in the repository using the TensorBoard Projector
 framework can be found at https://ledibr.github.io/words-above-replacement-visualizer/. The repository
 for this GitHub Pages site can be found at https://github.com/ledibr/words-above-replacement-visualizer.
 
-All files generated during training and analysis of the main experiment are located in 
-the [`results` directory](results).
-
 For more information on the project and specific details on the repository's contents,
-see the [docs folder](docs).
+see the [index](docs/index.md) in the [docs folder](docs).
 
 ## Running the demo
 

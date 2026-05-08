@@ -1,48 +1,54 @@
 # Words Above Replacement: A Computational Approach to Analyzing Baseball Writing
+**Date:** May 8, 2026
 **Author:** Lindsay Dial (ledibr)  
 **Affiliation:** Michtom School of Computer Science, Brandeis University  
 _Capstone project submitted in partial fulfillment of the requirements for the degree of Master of Science in Computational Linguistics._
 
 ## Introduction
-
-- motivation/goals
-  - building distributed semantic representations of baseball entities (players) 
-        to analyze attitudes and trends in media coverage
-  - From the dawn of professional baseball, the way a player appears in the papers 
+From the dawn of professional baseball, the way a player appears in the papers 
     has mattered to the public as much as their performance on the field. 
     Sportswriting has always involved judgments of statistics as well as character, 
-    and evidence of bias—especially racial bias—has been well-documented 
+    and evidence of bias—especially racial bias—has been thoroughly documented 
     in everything from blog posts to internal scouting reports. 
     But there is only so much that we, as human readers, can discern, 
     which made me wonder: what if there is more to the media’s language 
     than meets the eye? What sentiments are expressed that we may not easily perceive? 
     And is it possible for us to learn something new about a player’s potential 
     from the way that people talk about them?
-  - Expanding the very small field of baseball NLP to advance sabermetrics
-    and support future research
-- research questions
-  - What players are written about most similarly?
-  - Do these similarities appear based on race, nationality, position, team, or other factors?
-  - What particular words, whether "objective" descriptors or more "subjective"
-    personal commentary, are most closely associated with certain players (and groups)?
-  - How does language correlate with play-based statistics, and can past writing
-    predict future performance?
-- Using publicly available writing from the last ten years...
-- I then use them to explore a number of questions, including... 
-- By using broader linguistic context, my research will provide unprecedented insight
+
+In this project, I use publicly available online baseball writing from the last ten years to 
+build distributed semantic representations of baseball players in the form of entity embeddings.
+I then use them to explore a number of questions, including:
+- What players are written about most similarly?
+- Do these similarities appear based on race, nationality, position, team, or other factors?
+- What particular words, whether "objective" descriptors or more "subjective"
+  personal commentary, are most closely associated with certain players (and groups)?
+- How does language correlate with play-based statistics, and can past writing
+  predict future performance?
+
+By using broader linguistic context, my research will provide unprecedented insight
   into how MLB players are depicted in the kind of writing that millions of fans 
   read every day. To my knowledge, this kind of large-scale computational analysis 
   of both bias and predictive potential in public-facing baseball writing 
-  has never been performed before.
-- The contributions of this paper are as follows: to ... , I ...
-  In addition to evaluating ... , I also explore ... 
-  Finally, I ... by ...
-  My results ... and I propose future directions for expanding my findings. 
-- My discussion begins with a brief overview of prior work in this area in
-  ... I then describe my data and outline ... and ... , followed by 
-  an analysis of my results in ... Finally, I review my conclusions, contributions, 
-  and plans for future work in ... , as well as addressing the project's limitations ...
+  has never been performed before. Beyond answering my research questions, 
+my work aims to expand the current landscape of baseball NLP to advance 
+the field of sabermetrics and support future research in this area.
 
+The contributions of this project are as follows: to analyze attitudes and trends in baseball
+writing, I train Word2Vec embeddings mapping words and target entities into a shared vector space
+on a corpus of articles sourced from online blogs and journalism outlets. In addition to evaluating
+the results of clustering these entity embeddings, I compute word similarity scores between
+player and non-player embeddings, examining them qualitatively as well as quantitatively comparing
+them to different baseball statistics. Finally, I conduct a basic exploration of the predictive
+potential of such embeddings by evaluating correlations between player similarity scores and
+WAR values.
+
+My discussion begins with a brief overview of prior work in this area in [section 1](#related-work).
+I then describe my data in [section 2](#data) and the embedding construction process in 
+[section 3](#embeddings). I outline my experimental setup in [section 4](#experiments),
+followed by an analysis of my results in [section 5](#results). I review my conclusions, 
+contributions, and plans for future work, in [section 6](#conclusion), as well as addressing
+the project's limitations in [section 7](#limitations).
 
 ## Related Work
 - focus on yamada et al., rob arthur, anything tagged as especially
