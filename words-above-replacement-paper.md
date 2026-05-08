@@ -166,6 +166,12 @@ were: 300 dimensions; initial learning rate of 0.025; context window size of 10;
 downsampling frequency value of 1e-5; minimum word count of 10; and 3 epochs of training. These parameters
 were selected to balance training time and coherence of player similarity values.
 
+After training was completed, embedding tensors and associated metadata were uploaded to a custom TensorBoard
+Projector site hosted on GitHub Pages. This enables improved visualization and exploration of new embedding 
+relationships within a 3D space. The site can be accessed [here](https://ledibr.github.io/words-above-replacement-visualizer/), 
+with a repository [here](https://github.com/ledibr/words-above-replacement-visualizer).
+More information on the projector site can be found in the [projector doc](docs/projector.md).
+
 ## Experiments
 
 Following grid search, one additional experiment was performed on the 24-player set with the chosen
@@ -229,25 +235,57 @@ An examination of the embedding clusters reveals that, while not especially cohe
 notable trends in grouping players by team as well as position. Silhouette scores were low overall, with
 agglomerative clustering performing better than k-means and generally having more coherent/less noisy clusters.
 
-<img alt="Number of players per cluster by nationality." height="400" src="imgs/cluster_nationality.png" width="1800"/>
+<img alt="Number of players per k-means cluster by position." height="400" src="imgs/kmeans_cluster_position.png" width="1000"/>
 
-[text]
+Turning first to the k-means clusters, we see that players were sharply divided 
+among positional lines, specifically between pitchers and non-pitchers.
+Among pitcher-centric clusters, starting pitchers and relief pitchers were also often separated from
+each other. Clusters 9, 11, and 15 consist exclusively of SPs, while clusters 2 and 12 are
+predominantly SPs with one RP each. Cluster 13 consists mostly of RPs with a few SPs. Otherwise, pitchers
+appear more or less sporadically in other clusters, with rarely more than one or two present in any group.
+The exception is cluster 3, which consists of three SPs and two position players.
+Among position players, there is less separation between specific positions; most clusters feature a variety
+of different positions, as one would expect from the composition of a team.
 
-<img alt="Number of players per cluster by position." height="400" src="imgs/cluster_position.png" width="1000"/>
+<img alt="Number of players per k-means cluster by team." height="400" src="imgs/kmeans_cluster_team.png" width="1000"/>
 
-[text]
+Clusters were also formed overwhelmingly based on team. Clusters 3, 5, 6, 9, 12, and 14 consist
+of only one team, while most others have at least a significant proportion of one team. One notable
+exception is cluster 2, which was noted above as consisting of pitchers. This reinforces the theory that
+the divide between pitchers and position players is even stronger than the divide between different teams.
 
-<img alt="Number of players per cluster by team." height="400" src="imgs/cluster_team.png" width="1000"/>
+<img alt="Number of players per k-means cluster by nationality." height="400" src="imgs/kmeans_cluster_nationality.png" width="1800"/>
 
-[text]
+While I also examined nationality metrics, no patterns were immediately apparent. Dominance of American players in
+any given cluster is unsurprising, as they make up approximately 2/3 of the player set.
+
+<img alt="Number of players per agglomerative cluster by position." height="400" src="imgs/agg_cluster_position.png" width="900"/>
+
+The agglomerative clusters still show noticeable divides between position players and pitchers, but the distinction
+is less strong than for k-means clusters. Cluster 1 consists primarily of SPs with a few RPs, and
+cluster 12 consists entirely of RPs; otherwise, there are no clusters that consist solely of pitchers.
+Meanwhile, clusters 2, 3, 4, 5, 14, and 16 consist entirely of position players, though again not with
+any particularly strong divisions between positions.
+
+<img alt="Number of players per agglomerative cluster by team." height="400" src="imgs/agg_cluster_team.png" width="1000"/>
+
+Among the agglomerative clusters, clusters 6, 10, 11, 13, 16, and 18 consist of one team, with clusters 7, 8, 9,
+14, 15, and 17 featuring mostly one team with only one player from a different team present. As with the k-means clusters,
+the pitcher-exclusive cluster 1 has a wide diversity of teams. Clusters 2, 4, and 5 all have at least
+five different teams represented. Overall, the tendency to form clusters along team lines is still extremely strong.
+
+<img alt="Number of players per agglomerative cluster by nationality." height="400" src="imgs/agg_cluster_nationality.png" width="1800"/>
+
+As with the k-means clusters, the agglomerative clusters did not show anything particularly unusual
+in terms of nationality spread.
 
 ### Word Similarity
 
+
+
 ### Player Similarity
 
-### Embedding Visualization
 
-- Visualization: Tensorboard Projector on GitHub Pages site (separate repo)
 
 ## Conclusion
 
