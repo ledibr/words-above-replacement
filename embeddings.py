@@ -55,7 +55,6 @@ def train_word2vec(corpus):
     ep = 3
     sample = 1e-5
 
-    # out_dir = f'data/exp_{exp_num}'
     params = f'dim-{dim}_lr-{lr}_window-{window}_neg-{neg}_ep-{ep}_sample-{sample}'
 
     logging.basicConfig(
@@ -87,9 +86,11 @@ def train_word2vec(corpus):
     )
     print(f'Word2Vec embeddings trained with config: dim = {dim}, lr = {lr}, window = {window}, neg = {neg}, ep = {ep}, sample = {sample}')
 
-    out_path = f'w2v_{params}.model'
-    model.save(out_path)
-    print(f'Embedding model saved at {os.getcwd()}/{out_path}.')
+    # Model saving disabled for demo purposes
+    # out_path = f'w2v_{params}.model'
+    # model.save(out_path)
+    # print(f'Embedding model saved at {os.getcwd()}/{out_path}.')
+
     print(f'Vocab size: {len(model.wv.index_to_key)}')
     print(f'Player count: {len(corpus.players)}')
 
@@ -246,7 +247,7 @@ if __name__ == '__main__':
         # model = train_word2vec(mention_corpus)
         for model_path in glob.glob('*.model'):
             model = Word2Vec.load(model_path)
-            get_similar_words(model.wv, player_ids)
+            # get_similar_words(model.wv, player_ids)
             # get_similar_players(model.wv, player_ids)
 
     # grid_search(exp_num, mention_corpus)

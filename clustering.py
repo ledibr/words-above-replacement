@@ -125,13 +125,6 @@ def cluster_embeddings(embeds):
     adjust_text(
         km_texts,
         objects=km_points,
-        # force_pull=(0.2, 0.3),
-        # force_explode=(0.2, 0.5),
-        # force_text=(0.3, 0.3),
-        # force_static=(0.3, 0.2),
-        # expand=(1, 1),
-        # max_move=None,
-        # pull_threshold=1,
         ax=ax2,
         time_lim=3,
         arrowprops=dict(arrowstyle="-", color='k', lw=0.5),
@@ -140,13 +133,6 @@ def cluster_embeddings(embeds):
     adjust_text(
         agg_texts,
         objects=agg_points,
-        # force_pull=(0.2, 0.3),
-        # force_explode=(0.2, 0.5),
-        # force_text=(0.3, 0.3),
-        # force_static=(0.3, 0.2),
-        # expand=(1, 1),
-        # max_move=None,
-        # pull_threshold=1,
         ax=ax4,
         time_lim=3,
         arrowprops=dict(arrowstyle="-", color='k', lw=0.5),
@@ -160,9 +146,12 @@ def cluster_embeddings(embeds):
     )
 
     print(scores)
-    fig.savefig(f'figs/clusters.png')
-    print(f'Plots for all clusters saved to {os.getcwd()}/figs/clusters.png.')
+    fig.savefig(f'clusters/cluster_graphs.png')
+    print(f'Plots for all clusters saved to {os.getcwd()}/clusters/cluster_graphs.png.')
     plt.show()
+
+    get_cluster_stats('clusters/members_kmeans.json')
+    get_cluster_stats('clusters/members_agg.json')
 
 
 def evaluate_cluster_size(embeds):
@@ -341,7 +330,7 @@ def compare_linkage_metrics(embeds):
 
 
 def get_target_array(embeds):
-    with open('player_list.txt', 'r', encoding='utf-8') as f:
+    with open(f'{DATA_DIR}/player_list.txt', 'r', encoding='utf-8') as f:
         players = [line.strip() for line in f]
     vectors = np.array([embeds.get_vector(p) for p in players])
     targets = players
@@ -395,9 +384,9 @@ def get_cluster_stats(cluster_path):
             stats['person_id'].append(pid)
             stats['cluster'].append(int(k) + 1)
     clus = pd.DataFrame.from_dict(stats)
-    nats = pd.read_csv('player_nationality.tsv', sep='\t', names=['person_id', 'country'])
-    batter_df = pd.read_csv(f'stats/batter_stats_calc.csv', encoding='utf-8', usecols=[0, 1, 3])
-    pitcher_df = pd.read_csv(f'stats/pitcher_stats_calc.csv', encoding='utf-8', usecols=[0, 1, 3])
+    nats = pd.read_csv(f'{DATA_DIR}/player_nationality.tsv', sep='\t', names=['person_id', 'country'])
+    batter_df = pd.read_csv(f'{DATA_DIR}/stats/batter_stats_calc.csv', encoding='utf-8', usecols=[0, 1, 3])
+    pitcher_df = pd.read_csv(f'{DATA_DIR}/stats/pitcher_stats_calc.csv', encoding='utf-8', usecols=[0, 1, 3])
     player_df = pd.concat([batter_df, pitcher_df])
 
     merged_df = pd.merge(clus, nats, how='left', on='person_id')
@@ -405,57 +394,7 @@ def get_cluster_stats(cluster_path):
 
     fname = Path(cluster_path).stem
     merged_df.to_csv(f'clusters/{fname}_stats.csv', index=False, mode='w', encoding='utf-8')
-
-
-def plot_cluster_stats(fpath):
-    df = pd.read_csv(fpath, encoding='utf-8')
-    for i in range(18):
-        df_rows = df[df['cluster'] == i + 1]
-    clusters = (i + 1 for i in range(18))
-    penguin_means = {
-        'Team': (18.35, 18.43, 14.98),
-        'Position': (38.79, 48.83, 47.50),
-        'Nationality': (189.95, 195.82, 217.19),
-    }
-
-    x = np.arange(len(species))  # the label locations
-    width = 0.25  # the width of the bars
-    multiplier = 0
-
-    fig, ax = plt.subplots(layout='constrained')
-
-    species = (
-        "Adelie\n $\\mu=$3700.66g",
-        "Chinstrap\n $\\mu=$3733.09g",
-        "Gentoo\n $\\mu=5076.02g$",
-    )
-    weight_counts = {
-        "Below": np.array([70, 31, 58]),
-        "Above": np.array([82, 37, 66]),
-    }
-    width = 0.5
-
-    fig, ax = plt.subplots()
-    bottom = np.zeros(3)
-
-    for boolean, weight_count in weight_counts.items():
-        p = ax.bar(species, weight_count, width, label=boolean, bottom=bottom)
-        bottom += weight_count
-
-    for attribute, measurement in penguin_means.items():
-        offset = width * multiplier
-        rects = ax.bar(x + offset, measurement, width, label=attribute)
-        ax.bar_label(rects, padding=3)
-        multiplier += 1
-
-    # Add some text for labels, title and custom x-axis tick labels, etc.
-    ax.set_ylabel('Length (mm)')
-    ax.set_title('Penguin attributes by species')
-    ax.set_xticks(x + width, species)
-    ax.legend(loc='upper left', ncols=3)
-    ax.set_ylim(0, 250)
-
-    plt.show()
+    print(f'Player info for each cluster written to {os.getcwd()}/clusters/{fname}_stats.csv.')
 
 
 if __name__ == '__main__':

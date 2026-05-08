@@ -182,6 +182,7 @@ the [Article Statistics doc](docs/articles.md).
     - negative sample value = 5
     - downsampling threshold: 1e-5
     - 3 epochs 
+    - min. count = 10
   - Loss tracked during the training process as a measure of convergence 
     for epoch values
 

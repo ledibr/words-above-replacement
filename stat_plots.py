@@ -176,7 +176,7 @@ def plot_pitcher_stats(embeds, df):
     stat_to_idx = {'ERA': 4, 'WHIP': 5, 'K-9': 6, 'BB-9': 7, 'K-BB': 8, 'GmSc': 9, 'QS%': 10, 'WAR-162': 11}
 
     if df is None:
-        df = pd.read_csv('stats/pitcher_stats_calc.csv', encoding='utf-8')
+        df = pd.read_csv(f'{DATA_DIR}/stats/pitcher_stats_calc.csv', encoding='utf-8')
     player_data = {p.person_id: p for p in df.itertuples(index=False) if p.position == 'SP'}
     plot_stats(pitcher_keywords, stat_to_idx, embeds, player_data)
 
@@ -193,7 +193,7 @@ def plot_batter_stats(embeds, df):
     stat_to_idx = {'AVG': 4, 'SLG': 6, 'ISO': 7, 'OPS': 8, 'K%': 9, 'HR%': 10, 'Clutch': 11, 'WAR-162': 12}
 
     if df is None:
-        df = pd.read_csv('stats/batter_stats_calc.csv', encoding='utf-8')
+        df = pd.read_csv(f'{DATA_DIR}/stats/batter_stats_calc.csv', encoding='utf-8')
     player_data = {p.person_id: p for p in df.itertuples(index=False)}
 
     plot_stats(batter_keywords, stat_to_idx, embeds, player_data)
@@ -226,9 +226,6 @@ def plot_stats(keywords, stat_index, embeds, player_data):
             m, b, r_value, p_value, std_err = linregress(x_vals, y_vals)
             ax.plot(np.unique(x_vals), m * np.unique(x_vals) + b, color='r')
             ax.set_title(f'$r^2$ = {r_value**2:.2f}, p = {p_value:.3f}')
-            # ax.plot(np.unique(x_vals), np.poly1d(np.polyfit(x_vals, y_vals, 1))(np.unique(x_vals)), color='red')
-            # for j in range(len(labels)):
-            #     ax.annotate(labels[j], (x_vals[j], y_vals[j]))
             all_texts.append([ax.text(x_vals[j], y_vals[j], labels[j], ha='center', va='center', size='small') for j in
                      range(len(labels))])
 
@@ -240,13 +237,6 @@ def plot_stats(keywords, stat_index, embeds, player_data):
             adjust_text(
                 all_texts[i],
                 objects=all_points[i],
-                # force_pull=(0.2, 0.3),
-                # force_explode=(0.2, 0.5),
-                # force_text=(0.3, 0.3),
-                # force_static=(0.3, 0.2),
-                # expand=(1, 1),
-                # max_move=None,
-                # pull_threshold=1,
                 ax=ax,
                 time_lim=3,
                 arrowprops=dict(arrowstyle="-", color='k', lw=0.5),
