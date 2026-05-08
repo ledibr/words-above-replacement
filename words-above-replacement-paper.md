@@ -219,7 +219,8 @@ using `scipy` to help estimate the correlation strength.
 
 Finally, correlations between player similarity and value were examined for each distinct position represented
 in the player set, as well as aggregated outfielders (all LF/CF/RF/OF designations) and aggregated pitchers
-(all SP and RP). For each position group, the player with the highest WAR/162 value was chosen as the 
+(all SP and RP). Players were divided by position to account for different positional adjustments added in WAR
+calculations. For each position group, the player with the highest WAR/162 value was chosen as the 
 comparison point, and similarity scores between that player and all other players in the position group were
 calculated. Those similarity scores were then plotted against the difference in WAR/162 between each player pair.
 As with the other similarity graphs, the line of best fit and r<sup>2</sup> and p-value were calculated for
@@ -289,9 +290,15 @@ in terms of nationality spread.
 
 ## Conclusion
 
-- well, conclusion
+An initial analysis of the findings indicates that players are, unsurprisingly, written about most similarly to their
+teammates, as well as other players at the same position. However, when examined more closely, meaningful patterns
+(or lack thereof) beyond these boundaries arise in the data. Some frequent terminology in the field seems to be
+meaningfully correlated with actual game-derived statistics, while some is perhaps more loosely applied. Most
+intriguingly, although the sample space is small, there appear to be some associations between player embeddings
+and WAR values. This lays a promising foundation for deeper inquiries into the latent value of linguistic data
+for sabermetric analysis and the possibility of using such data to predict future outcomes.
 
-The questions addressed by this project leave room for nearly infinite expansion of future work. Beyond
+The questions addressed by this project leave room for virtually infinite expansion of future work. Beyond
 performing further analysis on my existing results, the three most prominent areas I intend to explore going forward 
 are dataset expansion, embedding quality, and analysis of predictive power. 
 
