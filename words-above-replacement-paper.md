@@ -1,5 +1,5 @@
 # Words Above Replacement: A Computational Approach to Analyzing Baseball Writing
-**Date:** May 8, 2026
+**Date:** May 8, 2026  
 **Author:** Lindsay Dial (ledibr)  
 **Affiliation:** Michtom School of Computer Science, Brandeis University  
 _Capstone project submitted in partial fulfillment of the requirements for the degree of Master of Science 
@@ -218,8 +218,7 @@ identified. For each word, similarity was calculated for all players in the rele
 using `scipy` to help estimate the correlation strength.
 
 Finally, correlations between player similarity and value were examined for each distinct position represented
-in the player set, as well as aggregated outfielders (all LF/CF/RF/OF designations) and aggregated pitchers
-(all SP and RP). Players were divided by position to account for different positional adjustments added in WAR
+in the player set, as well as aggregated outfielders (all LF/CF/RF/OF designations). Players were divided by position to account for different positional adjustments added in WAR
 calculations. For each position group, the player with the highest WAR/162 value was chosen as the 
 comparison point, and similarity scores between that player and all other players in the position group were
 calculated. Those similarity scores were then plotted against the difference in WAR/162 between each player pair.
@@ -282,11 +281,64 @@ in terms of nationality spread.
 
 ### Word Similarity
 
+To evaluate the correlation between specific terms and player metrics, I divided players into starting pitchers
+and position players, selecting several words and one or more associated metrics for each word to be 
+evaluated for each group. Descriptions of metrics can be found in the [Statistics doc](docs/statistics.md). 
+The tables presented below contain the words and statistics evaluated for each group, linked to their respective
+images in the [`results/figs`](results/figs) directory to avoid congesting the paper.
 
+Pitchers:
+
+|                           Word                           |            Metrics            |
+|:--------------------------------------------------------:|:-----------------------------:|
+| [ace](results/figs/ace_vs_era_whip_qs%_gmsc_war-162.png) | ERA, WHIP, QS%, GmSc, WAR/162 |
+|  [strikeouts](results/figs/strikeouts_vs_k-9_k-bb.png)   |           K/9, K/BB           |
+|        [walk](results/figs/walk_vs_bb-9_k-bb.png)        |           BB/9, K/BB          |
+|       [walks](results/figs/walks_vs_bb-9_k-bb.png)       |           BB/9, K/BB          |
+|  [dominant](results/figs/dominant_vs_era_whip_gmsc.png)  |        ERA, WHIP, GmSc        |
+
+
+
+Position players:
+
+|                          Word                          |    Metrics    |
+|:------------------------------------------------------:|:-------------:|
+|   [slugger](results/figs/slugger_vs_slg_iso_hr%.png)   | SLG, ISO, HR% |
+|       [contact](results/figs/contact_vs_avg.png)       |      AVG      |
+| [superstar](results/figs/superstar_vs_ops_war-162.png) |  OPS, WAR/162 |
+|     [strikeout](results/figs/strikeout_vs_k%.png)      |       K%      |
+|    [strikeouts](results/figs/strikeouts_vs_k%.png)     |       K%      |
+|      [clutch](results/figs/clutch_vs_clutch.png)       |     Clutch    |
 
 ### Player Similarity
 
+The table presented below contains the different position groups and which player served
+as the central point of comparison, linked to their respective images in the 
+[`results/figs`](results/figs) directory to avoid congesting the paper.
 
+|                 Position                  |  Comp. Player |
+|:-----------------------------------------:|:-------------:|
+| [1B](results/figs/1B_vs_freema002fre.png) | freeman002fre |
+| [2B](results/figs/2B_vs_altuve001jos.png) |  altuve001jos |
+| [3B](results/figs/3B_vs_bregma001ale.png) |  bregma001ale |
+| [SS](results/figs/SS_vs_lindor000fra.png) |  lindor000fra |
+| [LF](results/figs/LF_vs_yelich001chr.png) |  yelich001chr |
+| [CF](results/figs/CF_vs_trout-001mik.png) |  trout-001mik |
+| [OF](results/figs/OF_vs_judge-001aar.png) |  judge-001aar |
+|  [C](results/figs/C_vs_perez-001sal.png)  |  perez-001sal |
+| [DH](results/figs/DH_vs_alvare000yor.png) |  alvare000yor |
+| [SP](results/figs/SP_vs_degrom001jac.png) |  degrom001jac |
+| [RP](results/figs/RP_vs_lugo--000jac.png) |  lugo--000jac |
+
+While some positions showed little to no correlation between similarity to the key player and WAR/162,
+others displayed a surprising amount. 1B and 2B both had high r<sup>2</sup> values with p-values < 0.05;
+OF and SP also had p-values < 0.05, though their correlation was somewhat less strong. CF had a very high
+r<sup>2</sup> value (0.89), but had a p-value just above 0.05; part of this is likely due to the existence
+of only 4 data points. LF and DH had fairly high r<sup>2</sup> values, but also high p-values due to
+a relative scarcity of data points. 3B, RP, and SS had low r<sup>2</sup> values and high p-values, suggesting
+little to no correlation. Interestingly, though the r<sup>2</sup> value was low and p-value was high, indicating
+that there is unlikely to be significant correlation, C demonstrated a *negative* association trend; that is,
+players with a more similar WAR/162 value to the key player had lower similarity scores.
 
 ## Conclusion
 
