@@ -297,7 +297,20 @@ Pitchers:
 |       [walks](results/figs/walks_vs_bb-9_k-bb.png)       |           BB/9, K/BB          |
 |  [dominant](results/figs/dominant_vs_era_whip_gmsc.png)  |        ERA, WHIP, GmSc        |
 
+Each statistic for the word 'ace' showed increasing r<sup>2</sup> values, all with p-values < 0.05.
+There was a slight association between 'ace' and lower (i.e. better) ERA
+and WHIP values, with increasingly strong associations between the word and
+higher QS%, GmSc, and WAR/162. Because WAR/162 for pitchers is a cloudy stat, I was surprised
+to see that it had the highest r<sup>2</sup> value among the statistics (0.39).
+Overall, it seems that baseball writers are using the word 'ace' appropriately to at least
+*some* extent.
 
+'Strikeouts' did not show significant association with K/9 or K/BB ratios. However, 
+there was a slight association between 'walk' and K/BB ratio, with a higher similarity score
+corresponding to a lower K/BB ratio; similarly, 'walks' showed slight correlations between
+similarity score and higher BB/9 / lower K-BB values. Finally, 'dominant' had virtually
+no correlation with any of its three tested metrics, suggesting the possibility
+that writers might be applying that word to just about anyone who has a good outing.
 
 Position players:
 
@@ -309,6 +322,16 @@ Position players:
 |     [strikeout](results/figs/strikeout_vs_k%.png)      |       K%      |
 |    [strikeouts](results/figs/strikeouts_vs_k%.png)     |       K%      |
 |      [clutch](results/figs/clutch_vs_clutch.png)       |     Clutch    |
+
+Unsurprisingly, 'slugger' was moderately correlated with SLG (r<sup>2</sup> = 0.52),
+ISO (0.45), and HR% (0.45), all with p-values < 0.01. 'Superstar' also showed moderate correlation with both of its metrics,
+which was slightly stronger for OPS (0.51) than WAR/162 (0.47). 
+
+On the other hand, 'contact' had essentially no correlation with AVG. Likewise,
+'strikeout' and 'strikeouts' showed no correlation with K%. 'Clutch' showed very slight
+association with clutch score, but not enough to be meaningful. As the existence of 'clutch'
+as a skill is widely debated and often considered mythical, it does not particularly surprise me
+that the word has little to no correlation with the metric.
 
 ### Player Similarity
 
@@ -383,7 +406,7 @@ operations of MLB teams.
 The ambitious and unprecedented scope of this work, as well as the nature of the data,
 resulted in a number of limitations for different aspects of the project. The dataset
 was limited to sites aggregated by Baseball Reference, which are mostly (though not all)
-less popular and lower in quality than "mainstream" sources. As discussed in [section 2](#data),
+less popular and lower in quality than "mainstream" sources. As discussed in [section 1](#data),
 the corpus balance is skewed towards certain teams and by extension certain players.
 The prevalence of sites focused on one specific team likely contributes to the strong similarity
 between embeddings of teammates, which might be lessened using data from more "general"/mainstream
