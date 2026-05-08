@@ -240,14 +240,14 @@ def categorize_similar_words(words, player_words):
     print(f'Category stats for player-word similarities written to {os.getcwd()}/similarities/player_word_stats.tsv.')
 
 
-if __name__ == '__main__':
-    random.seed(RANDOM_SEED)
+# if __name__ == '__main__':
+#     random.seed(RANDOM_SEED)
+#
+#     exp_num = '005'
+#     exp_path = f'data/exp_{exp_num}'
 
-    exp_num = '005'
-    exp_path = f'data/exp_{exp_num}'
-
-    # with open('data/mention_corpus.cor', 'rb') as f:
-    #     with bz2.open('data/mention_corpus.cor.bz2', 'wb') as bz:
+    # with open('data/war_db.db.txt', 'rb') as f:
+    #     with bz2.open('data/war_db.db.txt.bz2', 'wb') as bz:
     #         bz.write(f.read())
 
     # with ch_dir(exp_path):

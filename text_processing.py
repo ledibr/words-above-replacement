@@ -331,19 +331,19 @@ def update_mention_counts(conn, cursor):
         conn.commit()
 
 
-if __name__ == '__main__':
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
+# if __name__ == '__main__':
+#     conn = sqlite3.connect(DATABASE)
+#     cursor = conn.cursor()
 
-    exp_num = '005'
-    exp_path = f'data/exp_{exp_num}'
-    os.makedirs(exp_path, exist_ok=True)
+    # exp_num = '005'
+    # exp_path = f'data/exp_{exp_num}'
+    # os.makedirs(exp_path, exist_ok=True)
 
-    with ch_dir(exp_path):
-        # get_player_list(cursor)
-        # build_regex_dict(cursor)
-        # replace_mentions(cursor)
-        update_mention_counts(conn, cursor)
+    # with ch_dir(exp_path):
+    #     # get_player_list(cursor)
+    #     # build_regex_dict(cursor)
+    #     # replace_mentions(cursor)
+    #     update_mention_counts(conn, cursor)
 
     # mask_mentions(conn, cursor)
 

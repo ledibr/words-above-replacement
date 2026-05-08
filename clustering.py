@@ -397,19 +397,19 @@ def get_cluster_stats(cluster_path):
     print(f'Player info for each cluster written to {os.getcwd()}/clusters/{fname}_stats.csv.')
 
 
-if __name__ == '__main__':
-    random.seed(RANDOM_SEED)
-
-    exp_num = '005'
-    exp_path = f'data/exp_{exp_num}'
-
-    with ch_dir(exp_path):
-        os.makedirs('figs', exist_ok=True)
-        os.makedirs('clusters', exist_ok=True)
-        # for model_path in glob.glob('*.model'):
-        #     model = Word2Vec.load(model_path)
-        #     # evaluate_cluster_size(model.wv)
-        #     # compare_linkage_metrics(model.wv)
-        #     cluster_embeddings(model.wv)
-        for cluster_path in glob.glob('clusters/*.json'):
-            get_cluster_stats(cluster_path)
+# if __name__ == '__main__':
+#     random.seed(RANDOM_SEED)
+#
+#     exp_num = '005'
+#     exp_path = f'data/exp_{exp_num}'
+#
+#     with ch_dir(exp_path):
+#         os.makedirs('figs', exist_ok=True)
+#         os.makedirs('clusters', exist_ok=True)
+#         # for model_path in glob.glob('*.model'):
+#         #     model = Word2Vec.load(model_path)
+#         #     # evaluate_cluster_size(model.wv)
+#         #     # compare_linkage_metrics(model.wv)
+#         #     cluster_embeddings(model.wv)
+#         for cluster_path in glob.glob('clusters/*.json'):
+#             get_cluster_stats(cluster_path)

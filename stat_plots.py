@@ -317,23 +317,23 @@ def compare_war(stat_file, embeds):
     plt.show()
 
 
-if __name__ == '__main__':
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
-
-    random.seed(RANDOM_SEED)
-
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_colwidth', None)
-    pd.set_option('display.width', 200)
-
-    exp_num = '005'
-    exp_path = f'data/exp_{exp_num}' # not doing makedirs because it Has To exist by now
-
-    with ch_dir(exp_path):
-        for model_path in glob.glob('*.model'):
-            model = Word2Vec.load(model_path)
-            # get_stats(cursor, model.wv)
-            for path in glob.glob('stats/*calc.csv'):
-                compare_war(path, model.wv)
+# if __name__ == '__main__':
+#     conn = sqlite3.connect(DATABASE)
+#     cursor = conn.cursor()
+#
+#     random.seed(RANDOM_SEED)
+#
+#     pd.set_option('display.max_columns', None)
+#     pd.set_option('display.max_rows', None)
+#     pd.set_option('display.max_colwidth', None)
+#     pd.set_option('display.width', 200)
+#
+#     exp_num = '005'
+#     exp_path = f'data/exp_{exp_num}' # not doing makedirs because it Has To exist by now
+#
+#     with ch_dir(exp_path):
+#         for model_path in glob.glob('*.model'):
+#             model = Word2Vec.load(model_path)
+#             # get_stats(cursor, model.wv)
+#             for path in glob.glob('stats/*calc.csv'):
+#                 compare_war(path, model.wv)

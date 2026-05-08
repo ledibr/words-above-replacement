@@ -14,7 +14,7 @@ MASK_TEXT_STORAGE = f'{DATA_DIR}/texts/masked'
 MENT_TEXT_STORAGE = f'{DATA_DIR}/texts/mention_replaced'
 RANDOM_SEED = 42
 
-print(f'{DATA_DIR}, {MASK_TEXT_STORAGE}, {MENT_TEXT_STORAGE}')
+# print(f'{DATA_DIR}, {MASK_TEXT_STORAGE}, {MENT_TEXT_STORAGE}')
 
 
 @contextmanager

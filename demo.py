@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os, random, glob, json
 import pandas as pd
 from gensim.models.word2vec import KeyedVectors

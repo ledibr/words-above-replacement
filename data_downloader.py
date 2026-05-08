@@ -412,9 +412,9 @@ def update_player_article_counts(conn: sqlite3.Connection, cursor: sqlite3.Curso
     print("View updated_player_view updated.")
 
 
-if __name__ == '__main__':
-    conn = sqlite3.connect(DATABASE)
-    cursor = conn.cursor()
+# if __name__ == '__main__':
+#     conn = sqlite3.connect(DATABASE)
+#     cursor = conn.cursor()
 
     # update_player_article_counts(conn, cursor)
 
