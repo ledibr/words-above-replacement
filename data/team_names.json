@@ -1,0 +1,182 @@
+[
+  {
+    "name": "New York Mets",
+    "loc": "New York",
+    "id": "Met(?:s)?",
+    "abb": "NYM"
+  },
+  {
+    "name": "Philadelphia Phillies",
+    "loc": "(Philadelphia|Philly)",
+    "id": "Phillie(?:s)?",
+    "abb": "PHI"
+  },
+  {
+    "name": "Atlanta Braves",
+    "loc": "Atlanta",
+    "id": "Brave(?:s)?",
+    "abb": "ATL"
+  },
+  {
+    "name": "Washington Nationals",
+    "loc": "Washington",
+    "id": "((National(?:s)?)|(Nat(?:s)?))",
+    "abb": "WSN"
+  },
+  {
+    "name": "Miami Marlins",
+    "loc": "Miami",
+    "id": "Marlin(?:s)?",
+    "abb": "MIA"
+  },
+  {
+    "name": "Milwaukee Brewers",
+    "loc": "Milwaukee",
+    "id": "Brewer(?:s)?",
+    "abb": "MIL"
+  },
+  {
+    "name": "Chicago Cubs",
+    "loc": "Chicago",
+    "id": "Cub(?:s)?",
+    "abb": "CHC"
+  },
+  {
+    "name": "Pittsburgh Pirates",
+    "loc": "Pittsburgh",
+    "id": "Pirate(?:s)?",
+    "abb": "PIT"
+  },
+  {
+    "name": "Cincinnati Reds",
+    "loc": "Cincinnati",
+    "id": "Reds",
+    "abb": "CIN"
+  },
+  {
+    "name": "St Louis Cardinals",
+    "loc": "St Louis",
+    "id": "Cardinal(?:s)?",
+    "abb": "STL"
+  },
+  {
+    "name": "Los Angeles Dodgers",
+    "loc": "Los Angeles",
+    "id": "Dodger(?:s)?",
+    "abb": "LAD"
+  },
+  {
+    "name": "San Francisco Giants",
+    "loc": "San Francisco",
+    "id": "Giant(?:s)?",
+    "abb": "SFG"
+  },
+  {
+    "name": "San Diego Padres",
+    "loc": "San Diego",
+    "id": "Padre(?:s)?",
+    "abb": "SDP"
+  },
+  {
+    "name": "Colorado Rockies",
+    "loc": "Colorado",
+    "id": "Rockie(?:s)?",
+    "abb": "COL"
+  },
+  {
+    "name": "Arizona Diamondbacks",
+    "loc": "Arizona",
+    "id": "D(?:iamond)?back(?:s)?",
+    "abb": "ARI"
+  },
+  {
+    "name": "Toronto Blue Jays",
+    "loc": "Toronto",
+    "id": "Blue Jay(?:s)?",
+    "abb": "TOR"
+  },
+  {
+    "name": "New York Yankees",
+    "loc": "New York",
+    "id": "Yankee(?:s)?",
+    "abb": "NYY"
+  },
+  {
+    "name": "Boston Red Sox",
+    "loc": "Boston",
+    "id": "Red Sox",
+    "abb": "BOS"
+  },
+  {
+    "name": "Baltimore Orioles",
+    "loc": "Baltimore",
+    "id": "Oriole(?:s)?",
+    "abb": "BAL"
+  },
+  {
+    "name": "Tampa Bay Rays",
+    "loc": "Tampa Bay",
+    "id": "Ray(?:s)?",
+    "abb": "TBR"
+  },
+  {
+    "name": "Minnesota Twins",
+    "loc": "Minnesota",
+    "id": "Twin(?:s)?",
+    "abb": "MIN"
+  },
+  {
+    "name": "Chicago White Sox",
+    "loc": "Chicago",
+    "id": "White Sox",
+    "abb": "CWS"
+  },
+  {
+    "name": "Kansas City Royals",
+    "loc": "Kansas City",
+    "id": "Royal(?:s)?",
+    "abb": "KCR"
+  },
+  {
+    "name": "Cleveland (?:Guardians|Indians)",
+    "loc": "Cleveland",
+    "id": "((Guardian(?:s)?)|(Indian(?:s)?))",
+    "abb": "CLE"
+  },
+  {
+    "name": "Detroit Tigers",
+    "loc": "Detroit",
+    "id": "Tiger(?:s)?",
+    "abb": "DET"
+  },
+  {
+    "name": "Seattle Mariners",
+    "loc": "Seattle",
+    "id": "Mariner(?:s)?",
+    "abb": "SEA"
+  },
+  {
+    "name": "Houston Astros",
+    "loc": "Houston",
+    "id": "Astro(?:s)?",
+    "abb": "HOU"
+  },
+  {
+    "name": "Texas Rangers",
+    "loc": "Texas",
+    "id": "Ranger(?:s)?",
+    "abb": "TEX"
+  },
+  {
+    "name": "(?:Sacramento|Oakland) Athletics",
+    "loc": "(Sacramento|Oakland)",
+    "id": "Athletic(?:s)?",
+    "abb": "ATH"
+  },
+  {
+    "name": "Los Angeles Angels",
+    "loc": "Los Angeles",
+    "id": "Angel(?:s)?",
+    "abb": "LAA"
+  }
+]
